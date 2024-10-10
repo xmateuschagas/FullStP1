@@ -1,82 +1,60 @@
-# FullStP1
+FullStP1
+Autor: Mateus Chagas
 
-Aplicação de Chat com Autenticação JWT e Socket.IO
 Descrição
-Este projeto é uma aplicação de chat que permite a criação de salas de bate-papo em tempo real. A autenticação é feita via JWT (JSON Web Token), garantindo que apenas usuários autenticados possam acessar as salas, criar novas salas e participar das conversas. A comunicação entre os usuários ocorre em tempo real, utilizando o Socket.IO.
+O projeto FullStP1 é uma aplicação de chat em tempo real com autenticação JWT e Socket.IO. Ele permite que usuários criem salas de bate-papo, participem dessas salas e interajam em tempo real. A autenticação via JSON Web Token (JWT) garante que apenas usuários autenticados possam criar ou acessar salas. O sistema utiliza Node.js para o backend, MongoDB para gerenciar as salas de chat, e MySQL para armazenar as informações dos usuários.
 
 Funcionalidades
-Autenticação: Registro e login de usuários com criptografia de senha.
-Proteção por JWT: Acesso às rotas de criação, listagem e participação em salas protegido por tokens JWT.
-Criação de Salas: Usuários autenticados podem criar salas de bate-papo com nome, descrição e capacidade máxima.
-Chat em Tempo Real: Comunicação instantânea entre os usuários nas salas utilizando Socket.IO.
-Notificação de entrada: Exibe quando um usuário entra em uma sala e mostra o nome da sala em destaque.
-Estrutura do Projeto
-plaintext
-Copiar código
-├── src
-│   ├── config
-│   │   ├── mongo.js         # Conexão com MongoDB
-│   │   └── mysql.js         # Conexão com MySQL
-│   ├── controllers
-│   │   ├── RoomController.js # Lógica das salas de bate-papo
-│   │   └── UserController.js # Lógica de autenticação e registro
-│   ├── middlewares
-│   │   └── auth.js          # Middleware de autenticação JWT
-│   ├── models
-│   │   └── Room.js          # Modelo de dados das salas de bate-papo
-│   ├── static               # Arquivos estáticos (HTML, CSS, JS)
-│   │   ├── chat.html        # Página do chat
-│   │   ├── salas.html       # Página de listagem e criação de salas
-│   │   ├── login.html       # Página de login
-│   │   └── style.css        # Estilos CSS
-│   ├── routes
-│   │   ├── Room.routes.js   # Rotas para salas
-│   │   └── User.Routes.js   # Rotas para autenticação
-│   ├── services
-│   │   └── socket.js        # Configuração do Socket.IO
-│   └── server.js            # Arquivo principal da aplicação
-├── .env                     # Variáveis de ambiente (configurações de banco de dados e JWT)
-├── package.json             # Dependências e scripts
-└── README.md                # Documentação do projeto
+Autenticação e Registro de Usuários:
+
+Os usuários podem se registrar e fazer login no sistema.
+A senha dos usuários é criptografada utilizando bcryptjs para garantir a segurança.
+Após o login, um token JWT é gerado para o usuário, permitindo que ele acesse as rotas protegidas.
+Criação de Salas de Bate-papo:
+
+Usuários autenticados podem criar novas salas de bate-papo informando o nome da sala, descrição e capacidade máxima.
+As salas são armazenadas no MongoDB, com um identificador único para cada sala.
+Listagem de Salas Disponíveis:
+
+Os usuários podem ver todas as salas criadas e ativas após o login.
+Ao clicar em uma sala, eles são redirecionados para o bate-papo da sala selecionada.
+Chat em Tempo Real:
+
+A comunicação dentro das salas de bate-papo é feita em tempo real através de Socket.IO.
+As mensagens enviadas por um usuário são exibidas para todos os participantes da sala.
+Quando um usuário entra em uma sala, uma notificação é exibida informando sua entrada.
+Proteção por JWT:
+
+Apenas usuários autenticados podem acessar as rotas de criação de salas e participação nas salas de bate-papo.
+O token JWT é verificado em cada requisição para garantir a segurança das rotas.
 Tecnologias Utilizadas
-Node.js: Para o servidor backend.
-Express: Framework web para criar rotas e middleware.
-MongoDB: Para armazenar dados das salas de bate-papo.
-MySQL: Para armazenar dados dos usuários (registro e login).
-JWT: Para autenticação e proteção das rotas.
-Socket.IO: Para comunicação em tempo real entre os usuários nas salas de chat.
-HTML/CSS/JavaScript: Para as páginas front-end.
-Como rodar o projeto
-Clone o repositório:
-bash
-Copiar código
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
-Instale as dependências:
-bash
-Copiar código
-npm install
-Configuração do arquivo .env:
-Crie um arquivo .env na raiz do projeto com as seguintes variáveis:
+Node.js: Plataforma para o backend da aplicação.
+Express: Framework para o gerenciamento de rotas e middlewares.
+MongoDB: Banco de dados NoSQL utilizado para armazenar as informações das salas de bate-papo.
+MySQL: Banco de dados relacional utilizado para armazenar os dados dos usuários.
+JWT (JSON Web Token): Para autenticação de usuários e proteção das rotas.
+Socket.IO: Para comunicação em tempo real no bate-papo.
+HTML/CSS/JavaScript: Para construção das páginas front-end da aplicação.
+bcryptjs: Para criptografar as senhas dos usuários antes de armazená-las no banco de dados.
+Como Funciona
+Autenticação:
 
-bash
-Copiar código
-PORT=3000
-DB_USER=seu-usuario-mongo
-DB_PASS=sua-senha-mongo
-JWT_SECRET=sua-chave-secreta-jwt
+O usuário se registra ou faz login no sistema.
+Ao fazer login, o usuário recebe um token JWT que será utilizado para acessar rotas protegidas, como a criação e participação em salas de bate-papo.
+Criação de Salas:
 
-# Configurações do MySQL
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=root
-MYSQL_PASSWORD=sua-senha-mysql
-MYSQL_DATABASE=nome-do-seu-banco
-Iniciar o servidor:
-bash
-Copiar código
-npm start
-A aplicação estará disponível em http://localhost:3000.
+Após logar, o usuário pode criar uma sala de bate-papo, informando o nome, a descrição e a capacidade.
+A sala é armazenada no MongoDB e exibida na lista de salas disponíveis.
+Participação nas Salas:
 
-Autor
-Mateus Chagas
+Os usuários podem selecionar uma sala da lista para participar.
+Ao entrar, o usuário vê o nome da sala em destaque e recebe uma notificação sobre quem está na sala.
+Bate-papo em Tempo Real:
+
+Os usuários trocam mensagens em tempo real dentro da sala, com as mensagens sendo atualizadas instantaneamente para todos os participantes.
+Como Rodar o Projeto
+Clone o Repositório: Baixe o código do repositório Git.
+Instale as Dependências: Use npm install para instalar todas as dependências do Node.js.
+Configure o .env: Crie um arquivo .env com as variáveis de ambiente necessárias, como detalhes do MongoDB, MySQL e JWT.
+Inicie o Servidor: Use npm start para rodar a aplicação.
+Acesse a Aplicação: Acesse http://localhost:3000 no navegador para interagir com a aplicação.
