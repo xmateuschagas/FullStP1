@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registro</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tela de Login</h1>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <p>Ainda não tem uma conta? <a href="#" id="register-link">Registre-se aqui</a></p>
+
+        <div id="register-form" style="display: none;">
+            <h1>Registro</h1>
+            <input type="text" id="register-name" placeholder="Nome" required>
+            <input type="email" id="register-email" placeholder="Email" required>
+            <input type="password" id="register-password" placeholder="Senha" required>
+            <button id="register-btn">Registrar</button>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

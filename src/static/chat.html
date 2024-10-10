@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bate-Papo - {Nome da Sala}</title>
+  <link rel="stylesheet" href="/style.css"> <!-- Seu arquivo CSS -->
+</head>
+<body>
+  <div class="chat-container">
+    <h1 id="room-name"></h1> <!-- Nome da sala em destaque -->
+    <div id="messages"></div> <!-- Mensagens do chat -->
+    <form id="message-form">
+      <input type="text" id="message-input" placeholder="Digite sua mensagem" required>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <script src="/socket.io/socket.io.js"></script> <!-- Incluindo o Socket.io -->
+  <script src="/chat.js"></script> <!-- Arquivo JS para lidar com o bate-papo -->
+</body>
+</html>
